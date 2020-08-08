@@ -32,7 +32,7 @@ class FastAPI(Starlette):
         self,
         *,
         debug: bool = False,
-        routes: List[BaseRoute] = None,
+        routes: Optional[List[BaseRoute]] = None,
         title: str = "FastAPI",
         description: str = "",
         version: str = "0.1.0",
@@ -45,13 +45,19 @@ class FastAPI(Starlette):
         swagger_ui_oauth2_redirect_url: Optional[str] = "/docs/oauth2-redirect",
         swagger_ui_init_oauth: Optional[dict] = None,
         middleware: Optional[Sequence[Middleware]] = None,
+<<<<<<< HEAD
         exception_handlers: Optional[Dict[Union[int, Type[Exception]], Callable]] = None,
+=======
+        exception_handlers: Optional[
+            Dict[Union[int, Type[Exception]], Callable]
+        ] = None,
+>>>>>>> 4ad7c55618bea79bd6001940819edefb14caa55e
         on_startup: Optional[Sequence[Callable]] = None,
         on_shutdown: Optional[Sequence[Callable]] = None,
         openapi_prefix: str = "",
         root_path: str = "",
         root_path_in_servers: bool = True,
-        **extra: Dict[str, Any],
+        **extra: Any,
     ) -> None:
         self.default_response_class = default_response_class
         self._debug = debug
@@ -115,11 +121,8 @@ class FastAPI(Starlette):
 
     def setup(self) -> None:
         if self.openapi_url:
-            server_urls = set()
-            for server_data in self.servers:
-                url = server_data.get("url")
-                if url:
-                    server_urls.add(url)
+            urls = (server_data.get("url") for server_data in self.servers)
+            server_urls = {url for url in urls if url}
 
             async def openapi(req: Request) -> JSONResponse:
                 root_path = req.scope.get("root_path", "").rstrip("/")
@@ -198,7 +201,11 @@ class FastAPI(Starlette):
         deprecated: Optional[bool] = None,
         methods: Optional[List[str]] = None,
         operation_id: Optional[str] = None,
+<<<<<<< HEAD
         response_model_include: Union[SetIntStr, DictIntStrAny, None] = None,
+=======
+        response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+>>>>>>> 4ad7c55618bea79bd6001940819edefb14caa55e
         response_model_exclude: Union[SetIntStr, DictIntStrAny] = set(),
         response_model_by_alias: bool = True,
         response_model_skip_defaults: Optional[bool] = None,
@@ -245,7 +252,11 @@ class FastAPI(Starlette):
         response_model: Optional[Type[Any]] = None,
         status_code: int = 200,
         tags: Optional[List[str]] = None,
+<<<<<<< HEAD
         dependencies: Sequence[Depends] = None,
+=======
+        dependencies: Optional[Sequence[Depends]] = None,
+>>>>>>> 4ad7c55618bea79bd6001940819edefb14caa55e
         summary: Optional[str] = None,
         description: Optional[str] = None,
         response_description: str = "Successful Response",
@@ -253,7 +264,11 @@ class FastAPI(Starlette):
         deprecated: Optional[bool] = None,
         methods: Optional[List[str]] = None,
         operation_id: Optional[str] = None,
+<<<<<<< HEAD
         response_model_include: Union[SetIntStr, DictIntStrAny, None] = None,
+=======
+        response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+>>>>>>> 4ad7c55618bea79bd6001940819edefb14caa55e
         response_model_exclude: Union[SetIntStr, DictIntStrAny] = set(),
         response_model_by_alias: bool = True,
         response_model_skip_defaults: Optional[bool] = None,
@@ -344,7 +359,11 @@ class FastAPI(Starlette):
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
         deprecated: Optional[bool] = None,
         operation_id: Optional[str] = None,
+<<<<<<< HEAD
         response_model_include: Union[SetIntStr, DictIntStrAny, None] = None,
+=======
+        response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+>>>>>>> 4ad7c55618bea79bd6001940819edefb14caa55e
         response_model_exclude: Union[SetIntStr, DictIntStrAny] = set(),
         response_model_by_alias: bool = True,
         response_model_skip_defaults: Optional[bool] = None,
@@ -398,7 +417,11 @@ class FastAPI(Starlette):
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
         deprecated: Optional[bool] = None,
         operation_id: Optional[str] = None,
+<<<<<<< HEAD
         response_model_include: Union[SetIntStr, DictIntStrAny, None] = None,
+=======
+        response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+>>>>>>> 4ad7c55618bea79bd6001940819edefb14caa55e
         response_model_exclude: Union[SetIntStr, DictIntStrAny] = set(),
         response_model_by_alias: bool = True,
         response_model_skip_defaults: Optional[bool] = None,
@@ -445,14 +468,22 @@ class FastAPI(Starlette):
         response_model: Optional[Type[Any]] = None,
         status_code: int = 200,
         tags: Optional[List[str]] = None,
+<<<<<<< HEAD
         dependencies: Sequence[Depends] = None,
+=======
+        dependencies: Optional[Sequence[Depends]] = None,
+>>>>>>> 4ad7c55618bea79bd6001940819edefb14caa55e
         summary: Optional[str] = None,
         description: Optional[str] = None,
         response_description: str = "Successful Response",
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
         deprecated: Optional[bool] = None,
         operation_id: Optional[str] = None,
+<<<<<<< HEAD
         response_model_include: Union[SetIntStr, DictIntStrAny, None] = None,
+=======
+        response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+>>>>>>> 4ad7c55618bea79bd6001940819edefb14caa55e
         response_model_exclude: Union[SetIntStr, DictIntStrAny] = set(),
         response_model_by_alias: bool = True,
         response_model_skip_defaults: Optional[bool] = None,
@@ -506,7 +537,11 @@ class FastAPI(Starlette):
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
         deprecated: Optional[bool] = None,
         operation_id: Optional[str] = None,
+<<<<<<< HEAD
         response_model_include: Union[SetIntStr, DictIntStrAny, None] = None,
+=======
+        response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+>>>>>>> 4ad7c55618bea79bd6001940819edefb14caa55e
         response_model_exclude: Union[SetIntStr, DictIntStrAny] = set(),
         response_model_by_alias: bool = True,
         response_model_skip_defaults: Optional[bool] = None,
@@ -560,7 +595,11 @@ class FastAPI(Starlette):
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
         deprecated: Optional[bool] = None,
         operation_id: Optional[str] = None,
+<<<<<<< HEAD
         response_model_include: Union[SetIntStr, DictIntStrAny, None] = None,
+=======
+        response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+>>>>>>> 4ad7c55618bea79bd6001940819edefb14caa55e
         response_model_exclude: Union[SetIntStr, DictIntStrAny] = set(),
         response_model_by_alias: bool = True,
         response_model_skip_defaults: Optional[bool] = None,
@@ -614,7 +653,11 @@ class FastAPI(Starlette):
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
         deprecated: Optional[bool] = None,
         operation_id: Optional[str] = None,
+<<<<<<< HEAD
         response_model_include: Union[SetIntStr, DictIntStrAny, None] = None,
+=======
+        response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+>>>>>>> 4ad7c55618bea79bd6001940819edefb14caa55e
         response_model_exclude: Union[SetIntStr, DictIntStrAny] = set(),
         response_model_by_alias: bool = True,
         response_model_skip_defaults: Optional[bool] = None,
@@ -668,7 +711,11 @@ class FastAPI(Starlette):
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
         deprecated: Optional[bool] = None,
         operation_id: Optional[str] = None,
+<<<<<<< HEAD
         response_model_include: Union[SetIntStr, DictIntStrAny, None] = None,
+=======
+        response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+>>>>>>> 4ad7c55618bea79bd6001940819edefb14caa55e
         response_model_exclude: Union[SetIntStr, DictIntStrAny] = set(),
         response_model_by_alias: bool = True,
         response_model_skip_defaults: Optional[bool] = None,
@@ -722,7 +769,11 @@ class FastAPI(Starlette):
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
         deprecated: Optional[bool] = None,
         operation_id: Optional[str] = None,
+<<<<<<< HEAD
         response_model_include: Union[SetIntStr, DictIntStrAny, None] = None,
+=======
+        response_model_include: Optional[Union[SetIntStr, DictIntStrAny]] = None,
+>>>>>>> 4ad7c55618bea79bd6001940819edefb14caa55e
         response_model_exclude: Union[SetIntStr, DictIntStrAny] = set(),
         response_model_by_alias: bool = True,
         response_model_skip_defaults: Optional[bool] = None,
